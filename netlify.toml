@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/api/rate"
+  to = "/.netlify/functions/rate"
+  status = 200

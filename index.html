@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculadora de Precio Costa Rica</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">OC Solutions Costa Rica</p>
+            <h1>Calculadora de precio</h1>
+          </div>
+          <div class="rate-card" aria-live="polite">
+            <span id="rateStatus" class="status-dot">Sincronizando</span>
+            <strong id="rateDisplay">--</strong>
+            <small id="rateDate">Tipo de cambio</small>
+          </div>
+        </header>
+
+        <section class="grid">
+          <form class="panel controls" id="calculatorForm">
+              <div class="field-group">
+                <label for="cost">Costo de compra sin IVA</label>
+                <div class="money-row">
+                  <select id="costCurrency" aria-label="Moneda del costo">
+                  <option value="CRC">CRC</option>
+                  <option value="USD">USD</option>
+                </select>
+                  <input id="cost" inputmode="decimal" type="number" min="0" step="0.01" placeholder="0.00">
+                </div>
+                <p class="hint" id="costHint">El costo esta en colones.</p>
+              </div>
+
+            <div class="two-col">
+              <div class="field-group">
+                <label for="quantity">Cantidad</label>
+                <input id="quantity" inputmode="decimal" type="number" min="0" step="0.01" value="1">
+              </div>
+
+            </div>
+
+            <div class="two-col">
+              <div class="field-group">
+                <label for="profitPercent">Porcentaje</label>
+                <div class="suffix-field">
+                  <input id="profitPercent" inputmode="decimal" type="number" min="-99" step="0.01" value="30">
+                  <span>%</span>
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label for="includeVat">Precio final con IVA</label>
+                <div class="toggle-row">
+                  <input id="includeVat" type="checkbox" checked>
+                  <span>Incluir IVA 13%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="field-group exchange-box">
+              <div class="label-row">
+                <label for="rateSource">Tipo de cambio</label>
+                <button id="refreshRate" type="button" class="icon-button" title="Actualizar tipo de cambio" aria-label="Actualizar tipo de cambio">&#8635;</button>
+              </div>
+              <div class="two-col compact">
+                <select id="rateSource">
+                  <option value="bccr-sale">BCCR venta</option>
+                  <option value="bccr-buy">BCCR compra</option>
+                  <option value="bac-manual">BAC manual</option>
+                  <option value="manual">Otro manual</option>
+                </select>
+                <input id="exchangeRate" inputmode="decimal" type="number" min="0" step="0.01" placeholder="0.00">
+              </div>
+              <p class="hint" id="sourceHint">Sincronizando tipo de cambio...</p>
+            </div>
+
+            <div class="actions">
+              <button type="reset" class="secondary">Limpiar</button>
+            </div>
+          </form>
+
+          <section class="panel results" aria-live="polite">
+            <div class="result-main">
+              <span id="totalLabel">Precio final con IVA</span>
+              <strong id="totalWithVat">CRC 0.00</strong>
+            </div>
+
+            <div class="metric-list">
+              <div>
+                <span>Total sin IVA</span>
+                <strong id="priceWithoutVat">CRC 0.00</strong>
+              </div>
+              <div>
+                <span id="costTotalLabel">Costo total</span>
+                <strong id="costInCrc">CRC 0.00</strong>
+              </div>
+              <div>
+                <span>Ganancia neta</span>
+                <strong id="profitAmount">CRC 0.00</strong>
+              </div>
+              <div>
+                <span>Margen real</span>
+                <strong id="marginPercent">0.00%</strong>
+              </div>
+            </div>
+          </section>
+        </section>
+      </section>
+    </main>
+
+  <script src="app.js"></script>
+  </body>
+</html>
